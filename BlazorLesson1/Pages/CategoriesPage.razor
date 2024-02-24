@@ -1,0 +1,19 @@
+﻿@page "/categories";
+
+@inject ICatalog Catalog
+<h1>Список категорий</h1>
+
+@foreach(var cat in _categories)
+{
+    <p> @cat.Id: @cat.Name</p>
+}
+
+@code {
+    private IReadOnlyList<Category> _categories;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _categories = Catalog.GetCategories();
+    }
+}
